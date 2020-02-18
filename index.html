@@ -492,48 +492,6 @@ O(m*n)这个比较简单就是两个循环嵌套遍历判断是否相同即可12
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/07/05/go-slice-1/">
-            
-                <span>Go 刷题中不小心踩过的坑(切片)</span>
-        </a>
-        <div class="abstract-content">
-            起因
-这是一个我在刷算法题的时候遇到的问题，困了我一个下午没想出来是为什么。题目：子集
-
-这是我出现问题的那版代码可以明显的发现红框的两个地方其实是一个 leftArr ，但是在经过一次函数调用后就被修改了
-分析为什么会这样
-为什么会出现这种情况呢？
-
-让我们来分析一下代码，其实 search 函数是一个 前序遍历 ，内部有两个递归函数所以 search 函数一开始会先执行第 19 行一直递归到 index == len(nums)也就是 index = 5 时返回最后的 temp = [0, 3, 5, 7, 9]既然代码的报错处 index = 3，我们就可以先从此时开始分析（画了个...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="算法&数据结构">算法&数据结构</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Go">Go</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="slice">slice</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="LeetCode">LeetCode</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href="/2019/07/05/go-slice-2/">
             
                 <span>Go 删除切片指定索引的元素</span>
@@ -570,17 +528,16 @@ O(m*n)这个比较简单就是两个循环嵌套遍历判断是否相同即可12
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/07/05/leetcode-206/">
+        <a class="abstract-title" href="/2019/07/05/leetcode-list/">
             
-                <span>LeetCode 206 反转链表</span>
+                <span>LeetCode 常用结构之 链表</span>
         </a>
         <div class="abstract-content">
-            
-最近一直在 LeetCode 上刷题来熟悉 Go 的语法，遇见一道很绕头的题分享一下
+            常用的数据结构LeetCode 刷题的时候有几个常见的数据结构其中最常用的是 树 和 链表所以我把这两个数据结构单独写了两个包上篇文章已经介绍了树这篇文章说链表
 
-题目要求：反转一个单链表
-题目示例：12输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL
-题目解法：123456789func reverseList(head *ListNode) *ListNode &#123;    if head == nil || head.Next == nil &#123;        return head    &#125;    res := reverse...
+代码仓库：https://github.com/Han-MeiM/leetCode/tree/master/structure
+
+链表结构12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152package ListNodeimport (    "fmt"    "strconv"    ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -590,8 +547,6 @@ O(m*n)这个比较简单就是两个循环嵌套遍历判断是否相同即可12
             <!-- tags  -->
             
             <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="算法&数据结构">算法&数据结构</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Go">Go</a>
     
@@ -682,16 +637,13 @@ O(m*n)这个比较简单就是两个循环嵌套遍历判断是否相同即可12
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/07/05/leetcode-list/">
+        <a class="abstract-title" href="/2019/07/05/linux-1/">
             
-                <span>LeetCode 常用结构之 链表</span>
+                <span>拒绝使用 rm -rf 命令 ?</span>
         </a>
         <div class="abstract-content">
-            常用的数据结构LeetCode 刷题的时候有几个常见的数据结构其中最常用的是 树 和 链表所以我把这两个数据结构单独写了两个包上篇文章已经介绍了树这篇文章说链表
-
-代码仓库：https://github.com/Han-MeiM/leetCode/tree/master/structure
-
-链表结构12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152package ListNodeimport (    "fmt"    "strconv"    ...
+            起因之前不小心又把服务器的代码给删了，害我又跑去谷歌搜索找文章的快照来弥补损失，rm -rf 这个命令真的是害人不浅啊 :sob: 。并且据流言蜚语说昨天阿里服务器也被实习生给 rm -rf 搞蹦了，当然我觉得这肯定是开玩笑的。但是同样也说明了 rm -rf 在每个人心中的恐怖性。
+拒绝直接使用 rm -rf分享给大家一个我经常使用非 rm -rf 的删除方法。原理就是跟 windows 和 mac 的回收站机制一样。通过创建一个 垃圾箱（RecycleBin）文件夹。我是直接创建在根目录 / 下的，我比较懒这样能少打字。当有文件夹需要删除时，不要直接 rm -rf 来删除。而是通过 s...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -701,6 +653,42 @@ O(m*n)这个比较简单就是两个循环嵌套遍历判断是否相同即可12
             <!-- tags  -->
             
             <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/07/05/leetcode-206/">
+            
+                <span>LeetCode 206 反转链表</span>
+        </a>
+        <div class="abstract-content">
+            
+最近一直在 LeetCode 上刷题来熟悉 Go 的语法，遇见一道很绕头的题分享一下
+
+题目要求：反转一个单链表
+题目示例：12输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL
+题目解法：123456789func reverseList(head *ListNode) *ListNode &#123;    if head == nil || head.Next == nil &#123;        return head    &#125;    res := reverse...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="算法&数据结构">算法&数据结构</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="Go">Go</a>
     
@@ -1097,17 +1085,12 @@ O(m*n)这个比较简单就是两个循环嵌套遍历判断是否相同即可12
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/go-slice-1/">Go 刷题中不小心踩过的坑(切片)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/go-slice-2/">Go 删除切片指定索引的元素</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/leetcode-206/">LeetCode 206 反转链表</a>
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/leetcode-list/">LeetCode 常用结构之 链表</a>
         </li>
     
     
@@ -1122,17 +1105,12 @@ O(m*n)这个比较简单就是两个循环嵌套遍历判断是否相同即可12
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/leetcode-list/">LeetCode 常用结构之 链表</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/linux-1/">拒绝使用 rm -rf 命令 ?</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/other-1/">编码 摘要 加密</a>
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/leetcode-206/">LeetCode 206 反转链表</a>
         </li>
     
     
@@ -1142,12 +1120,12 @@ O(m*n)这个比较简单就是两个循环嵌套遍历判断是否相同即可12
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/share-1/">分享一个自己写的小程序「StrongestHero」</a>
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/other-1/">编码 摘要 加密</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/share-2/">安利一个浏览器的扩展「Octotree」</a>
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/share-1/">分享一个自己写的小程序「StrongestHero」</a>
         </li>
     
     
@@ -1162,7 +1140,17 @@ O(m*n)这个比较简单就是两个循环嵌套遍历判断是否相同即可12
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/share-2/">安利一个浏览器的扩展「Octotree」</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/sword-offer-013/">剑指offer 调整数组顺序使奇数位于偶数前面</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href="/2019/07/05/go-slice-1/">Go 刷题中不小心踩过的坑(切片)</a>
         </li>
     
     </ul></div>
@@ -1192,21 +1180,21 @@ O(m*n)这个比较简单就是两个循环嵌套遍历判断是否相同即可12
     
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
-        <span class="sidebar-tag-name" data-tags="其他"><span class="iconfont-archer">&#xe606;</span>其他</span>
-    
         <span class="sidebar-tag-name" data-tags="MacOS"><span class="iconfont-archer">&#xe606;</span>MacOS</span>
+    
+        <span class="sidebar-tag-name" data-tags="其他"><span class="iconfont-archer">&#xe606;</span>其他</span>
     
         <span class="sidebar-tag-name" data-tags="小程序"><span class="iconfont-archer">&#xe606;</span>小程序</span>
     
         <span class="sidebar-tag-name" data-tags="分享"><span class="iconfont-archer">&#xe606;</span>分享</span>
     
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
-    
         <span class="sidebar-tag-name" data-tags="Swoole"><span class="iconfont-archer">&#xe606;</span>Swoole</span>
+    
+        <span class="sidebar-tag-name" data-tags="TypeScript"><span class="iconfont-archer">&#xe606;</span>TypeScript</span>
     
         <span class="sidebar-tag-name" data-tags="剑指offer"><span class="iconfont-archer">&#xe606;</span>剑指offer</span>
     
-        <span class="sidebar-tag-name" data-tags="TypeScript"><span class="iconfont-archer">&#xe606;</span>TypeScript</span>
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
